@@ -23,17 +23,7 @@ const query = async (sql, params = []) => {
     });
 }
 
-const select = async (sql, params = []) => {
-    return new Promise((resolve, reject) => {
-        con.query(sql, params, (err, result, fields) => {
-            if (err) reject(err);
-            else resolve(fields);
-        });
-    });
-}
-
 
 module.exports = {
-    query,
-    select
+    query
 }
