@@ -10,17 +10,17 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      title: {
+      activity_group_id: {
         type: Sequelize.STRING
       },
-      activity_group_id: {
+      title: {
         type: Sequelize.STRING
       },
       is_active: {
         type: Sequelize.BOOLEAN
       },
       priority: {
-        type: Sequelize.ENUM('very-low', 'low', 'normal', 'high', 'very-high'),
+        type: Sequelize.ENUM('very-high', 'high', 'normal', 'low', 'very-low'),
         allowNull: false,
         defaultValue: 'very-high'
       },

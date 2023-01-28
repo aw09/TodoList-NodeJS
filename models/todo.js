@@ -3,7 +3,7 @@ const { sequelize, Types } = db;
 
 const Todo = sequelize.define('todos', {
     activity_group_id: {
-      type: Types.int,
+      type: Types.STRING,
       allowNull: false
     },
     title: {
