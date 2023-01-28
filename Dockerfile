@@ -1,26 +1,31 @@
 FROM node:16
 
+# Install Nginx
+RUN apt-get update && apt-get install -y nginx
+
+# Copy the nginx conf
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+
 # Create app directory
 WORKDIR /usr/src/app
 
-# Install app dependencies
-# A wildcard is used to ensure both package.json AND package-lock.json are copied
-# where available (npm@5+)
-COPY package*.json ./
+# Bundle app source
+COPY . .
 
 # RUN npm install
 # If you are building your code for production
 RUN npm ci --only=production
 
-# Bundle app source
-COPY . .
-
 # Environment Variables
 ENV MYSQL_HOST=localhost
 ENV MYSQL_PORT=3306
-ENV MYSQL_USER=root
-ENV MYSQL_PASSWORD=password
-ENV MYSQL_DBNAME=todolist
+ENV MYSQL_USER=
+ENV MYSQL_PASSWORD=
+ENV MYSQL_DBNAME=
+ENV PORT=3000
 
-EXPOSE 3030
-CMD [ "node", "index.js" ]
+
+EXPOSE 3030 3000
+
+# Start the app and nginx
+CMD ["sh", "start.sh"]
